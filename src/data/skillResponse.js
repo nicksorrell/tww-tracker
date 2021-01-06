@@ -1,0 +1,32 @@
+const skillResponse = [
+    { level: 60, xp: 2847284, rank: 725473, id: 14 },
+    { level: 58, xp: 2425324, rank: 655346, id: 13 },
+    { level: 55, xp: 1772309, rank: 942142, id: 3 },
+    { level: 55, xp: 1701638, rank: 918978, id: 2 },
+    { level: 55, xp: 1696578, rank: 885184, id: 0 },
+    { level: 54, xp: 1651272, rank: 857190, id: 1 },
+    { level: 53, xp: 1397701, rank: 787140, id: 11 },
+    { level: 50, xp: 1042635, rank: 959853, id: 8 },
+    { level: 49, xp: 968291, rank: 880045, id: 7 },
+    { level: 48, xp: 887020, rank: 782519, id: 12 },
+    { level: 47, xp: 781308, rank: 565372, id: 22 },
+    { level: 46, xp: 741125, rank: 746489, id: 9 },
+    { level: 46, xp: 735527, rank: 916147, id: 10 },
+    { level: 44, xp: 588064, rank: 570955, id: 21 },
+    { level: 43, xp: 504233, rank: 890860, id: 4 },
+    { level: 40, xp: 386235, rank: 535709, id: 19 },
+    { level: 39, xp: 341772, rank: 688930, id: 17 },
+    { level: 38, xp: 324795, rank: 728696, id: 20 },
+    { level: 38, xp: 321625, rank: 712462, id: 16 },
+    { level: 38, xp: 313402, rank: 638288, id: 15 },
+    { level: 36, xp: 274031, rank: 939286, id: 5 },
+    { level: 36, xp: 262101, rank: 1075521, id: 6 },
+    { level: 34, xp: 221940, rank: 726431, id: 18 },
+    { level: 31, xp: 158533, rank: 601651, id: 23 },
+    { level: 26, xp: 91969, rank: 554553, id: 25 },
+    { level: 18, xp: 38041, rank: 353905, id: 27 },
+    { level: 18, xp: 35486, rank: 874531, id: 24 },
+    { level: 1, xp: 0, rank: 0, id: 26 }
+];
+
+export default skillResponse;

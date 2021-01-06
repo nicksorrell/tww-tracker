@@ -1,0 +1,92 @@
+.title {
+    padding-left: 10px;
+    font-size: 2em;
+}
+
+.availableQuest {
+    padding: 3px 0;
+    padding-left: 10px;
+}
+
+.availableQuest:hover {
+    background: darkgoldenrod;
+    color: white;
+    cursor: pointer;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    padding-left: 5px;
+}
+
+.specialSkills, .regularSkills {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.specialSkills {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.regularSkills {
+    
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background: rgb(63, 106, 155);
+    color: white;
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    min-width: 35px;
+}
+
+.specialSkills .skill {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.skill img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.quests {
+    overflow-y: auto;
+    flex: 1 1 500px;
+}
+
+.difficulty {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+}
+
+.difficulty0 {
+    background: lime;
+}
+.difficulty1 {
+    background: yellow;
+}
+.difficulty2 {
+    background: orange;
+}
+.difficulty3 {
+    background: red;
+}
+.difficulty4 {
+    background: purple;
+}
+.difficulty250 {
+    background: lightblue;
+}

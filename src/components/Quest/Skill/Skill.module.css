@@ -1,0 +1,28 @@
+.skill {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: rgb(63, 106, 155);
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.skill:last-child {
+    margin-right: 0;
+}
+
+.level,
+.name {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.name {
+    margin-right: 5px;
+}
+.level {
+    font-weight: bold;
+}
+.icon {
+    margin: 0 5px;
+}

@@ -1,14 +1,19 @@
 {
   "name": "tww-tracker",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "axios": "^0.21.1",
+    "gojs": "^2.1.32",
+    "gojs-react": "^1.0.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "underscore": "^1.12.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -34,5 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

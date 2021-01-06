@@ -1,0 +1,26 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    flex-grow: 1;
+}
+
+.titlebar {
+    background: rgb(63, 106, 155);;
+    padding: 10px;
+    text-shadow: 1px 1px 0 black;
+    border-bottom: 1px solid black;
+}
+
+.panel {
+    background: #eee;
+    border-right: 1px solid #ccc;
+}
+
+.main {
+    width: 100%;
+}

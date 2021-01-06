@@ -39,7 +39,6 @@
 .skill {
     display: flex;
     align-items: center;
-    height: 30px;
     background: rgb(63, 106, 155);
     color: white;
     border-radius: 5px;

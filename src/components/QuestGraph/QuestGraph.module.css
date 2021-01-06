@@ -35,9 +35,10 @@
 .panel {
     display: flex;
     flex-direction: column;
-    width: 270px;
+    width: 300px;
     border-right: 1px solid #ccc;
     color: black;
+    background: #efefef;
 }
 
 .graph {

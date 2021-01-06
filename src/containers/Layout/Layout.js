@@ -7,7 +7,7 @@ function Layout() {
     return (
         <div className={styles.column}>
             <div className={styles.titlebar}>
-                <h1>TWW Tracker - Resterson</h1>
+                <h1>TWW Tracker - Nixorell</h1>
             </div>
             <div className={styles.row}>
                 <div className={styles.main}>

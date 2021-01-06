@@ -1,6 +1,7 @@
 .title {
     padding-left: 10px;
     font-size: 2em;
+    margin-bottom: 5px;
 }
 
 .availableQuest {
@@ -60,7 +61,7 @@
 
 .quests {
     overflow-y: auto;
-    flex: 1 1 500px;
+    flex: 1 1 100px;
 }
 
 .difficulty {
@@ -89,4 +90,12 @@
 }
 .difficulty250 {
     background: lightblue;
+}
+
+.summary {
+    padding: 0 10px;
+}
+
+.summary p {
+    margin-bottom: 10px;
 }

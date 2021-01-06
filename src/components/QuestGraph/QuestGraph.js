@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'underscore';
 import * as go from 'gojs';
 import axios from 'axios';
@@ -38,12 +38,12 @@ function QuestGraph() {
             (isDev
                 ? 'http://localhost/tww/'
                 : 'https://nicksorrell.com/tww-tracker/') +
-            'skills.php?user=Resterson',
+            'skills.php?user=Nixorell',
         quests:
             (isDev
                 ? 'http://localhost/tww/'
                 : 'https://nicksorrell.com/tww-tracker/') +
-            'quests.php?user=Resterson'
+            'quests.php?user=Nixorell'
     };
 
     useEffect(() => {

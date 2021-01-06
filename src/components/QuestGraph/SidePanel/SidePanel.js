@@ -9,6 +9,9 @@ function SidePanel(props) {
     const quests = props.quests;
     let playerSkills = {regular: [], special: []};
     let availableQuests = [];
+    let uniqueQuests = [];
+    let completedQuests = [];
+    let unmetQuests = []
 
     for (let skill of Object.entries(SkillIds)) {
         let skillName = skill[0].toLowerCase();
@@ -27,9 +30,22 @@ function SidePanel(props) {
     }
 
     for (let quest of quests) {
+        if (!uniqueQuests.find((_quest) => _quest.name === quest.name)) {
+            uniqueQuests.push(quest);
+        }
+        if (quest.status === 'COMPLETED') {
+            if (!completedQuests.find((_quest) => _quest.name === quest.name)) {
+                completedQuests.push(quest);
+            }
+        }
         if (quest.status === 'NOT_COMPLETED') {
             if (!availableQuests.find((_quest) => _quest.name === quest.name)) {
                 availableQuests.push(quest);
+            }
+        }
+        if (quest.status === 'REQUIREMENTS_NOT_MET') {
+            if (!unmetQuests.find((_quest) => _quest.name === quest.name)) {
+                unmetQuests.push(quest);
             }
         }
     }
@@ -86,9 +102,13 @@ function SidePanel(props) {
 
     return (
         <Fragment>
+            <h2 className={styles.title}>Summary</h2>
+            <div className={styles.summary}>
+                <p>You have completed {completedQuests.length} of the {uniqueQuests.length - 1} quests leading up to TWW so far. That's {Math.floor((completedQuests.length / (uniqueQuests.length-1) * 100))}% of the way there!</p>
+                <p>There are currently {availableQuests.length} quests unlocked and available, and {unmetQuests.length-1} quests still locked.</p>
+            </div>
             <h2 className={styles.title}>Skills</h2>
             <div className={styles.skills}>
-                
                 <div className={styles.regularSkills}>
                     {skillsEls}
                 </div>

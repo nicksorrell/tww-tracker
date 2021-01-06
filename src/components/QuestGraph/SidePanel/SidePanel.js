@@ -165,8 +165,8 @@ function SidePanel(props) {
                 </p>
                 <p>
                     There are currently {availableQuests.length} quests unlocked
-                    and available, and {unmetQuests.length - 1} quests still
-                    locked.
+                    and available, and {unmetQuests.length - 1} quests with
+                    unmet requirements.
                 </p>
             </div>
 

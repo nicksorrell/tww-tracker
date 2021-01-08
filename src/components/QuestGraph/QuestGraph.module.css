@@ -30,6 +30,7 @@
 
 .questGraph {
     display: flex;
+    height: 100%;
 }
 
 .panel {

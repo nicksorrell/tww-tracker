@@ -20,7 +20,7 @@ body {
 
 .diagram-component {
   width: auto;
-  height: 900px;
+  height: 100%;
   background: #fff
 }
 

@@ -186,7 +186,10 @@ function QuestGraph() {
 
         questDataArray.push({
             key: nodeKey,
-            name: quest.title,
+            name:
+                quest.title.indexOf('miniquest') > 0
+                    ? quest.title.split(' (miniquest)')[0]
+                    : quest.title,
             difficulty: questDifficulty,
             parent: parentKey,
             skills: skillsArray,
@@ -340,10 +343,13 @@ function QuestGraph() {
                 ),
                 $(
                     go.Panel,
-                    'Horizontal', {margin: new go.Margin(5,0,5,0)},
+                    'Horizontal',
+                    { margin: new go.Margin(5, 0, 5, 0) },
                     $(
-                        go.Shape, 'Circle', {height: 16, alignment: go.Spot.Center},
-                        new go.Binding('fill', 'difficulty', d => {
+                        go.Shape,
+                        'Circle',
+                        { height: 16, alignment: go.Spot.Center },
+                        new go.Binding('fill', 'difficulty', (d) => {
                             if (d === 0) return 'lime';
                             if (d === 1) return 'yellow';
                             if (d === 2) return 'orange';
@@ -354,20 +360,24 @@ function QuestGraph() {
                     ),
                     $(
                         go.TextBlock,
-                        {font: '16pt sans-serif', stroke: 'white', margin: new go.Margin(0,0,0,5), alignment: go.Spot.Center },
-                        new go.Binding('text', 'difficulty', d => {
-                            let difficulty = "";
+                        {
+                            font: '16pt sans-serif',
+                            stroke: 'white',
+                            margin: new go.Margin(0, 0, 0, 5),
+                            alignment: go.Spot.Center
+                        },
+                        new go.Binding('text', 'difficulty', (d) => {
+                            let difficulty = '';
                             if (d === 0) difficulty = 'Novice';
                             if (d === 1) difficulty = 'Intermediate';
                             if (d === 2) difficulty = 'Experienced';
                             if (d === 3) difficulty = 'Master';
                             if (d === 4) difficulty = 'Grandmaster';
                             if (d === 250) difficulty = 'Special';
-                            
-                            return `${difficulty}`
+
+                            return `${difficulty}`;
                         })
                     )
-
                 ),
                 $(go.Shape, 'LineH', {
                     stroke: 'rgba(255,255,255,0.75)',
@@ -488,8 +498,10 @@ function QuestGraph() {
             $(go.Shape, { strokeWidth: 3, stroke: '#424242' })
         );
 
-        diagram.click = function(e) {
-            e.diagram.commit(function(d) { d.clearHighlighteds(); }, "no highlighteds");
+        diagram.click = function (e) {
+            e.diagram.commit(function (d) {
+                d.clearHighlighteds();
+            }, 'no highlighteds');
         };
 
         diagram.model = new go.TreeModel(questDataArray);

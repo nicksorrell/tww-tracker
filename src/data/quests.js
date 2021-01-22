@@ -27,7 +27,7 @@ const quests = [
     {
         title: 'A Tail of Two Cats',
         skills: {},
-        quests: ['Gertrude\'s Cat', "Icthlarin's Little Helper"]
+        quests: ["Gertrude's Cat", "Icthlarin's Little Helper"]
     },
     {
         title: 'A Void Dance',
@@ -150,7 +150,8 @@ const quests = [
         quests: [
             'Wanted!',
             "What's Mine is Yours",
-            'Troll Stronghold'
+            'Troll Stronghold',
+            'Enter the Abyss (miniquest)'
         ]
     },
     {
@@ -274,12 +275,12 @@ const quests = [
     {
         title: "Icthlarin's Little Helper",
         skills: {},
-        quests: ['Gertrude\'s Cat', 'Diamond in the Rough']
+        quests: ["Gertrude's Cat", 'Diamond in the Rough']
     },
-    { 
-        title: 'Imp Catcher', 
-        skills: {}, 
-        quests: [] 
+    {
+        title: 'Imp Catcher',
+        skills: {},
+        quests: []
     },
     {
         title: 'In Aid of the Myreque',
@@ -497,7 +498,7 @@ const quests = [
             'Priest in Peril',
             'The Restless Ghost',
             "Witch's House",
-            'Gertrude\'s Cat',
+            "Gertrude's Cat",
             'Shadow of the Storm',
             'Lost City',
             'Monkey Madness',
@@ -532,7 +533,7 @@ const quests = [
             'Hazeel Cult',
             "Enakhra's Lament",
             'The Slug Menace',
-            'A Fairy Tale III - Battle at Ork\'s Rift',
+            "A Fairy Tale III - Battle at Ork's Rift",
             'A Tail of Two Cats',
             'Rocking Out',
             'Fight Arena'
@@ -953,7 +954,12 @@ const quests = [
         skills: {
             quest: '33'
         },
-        quests: ['Recruitment Drive', 'Priest in Peril', 'The Lost Tribe']
+        quests: [
+            'Recruitment Drive',
+            'Priest in Peril',
+            'The Lost Tribe',
+            'Enter the Abyss (miniquest)'
+        ]
     },
     {
         title: 'Waterfall Quest',
@@ -967,7 +973,7 @@ const quests = [
             mining: '42',
             agility: '21'
         },
-        quests: []
+        quests: ['Enter the Abyss (miniquest)']
     },
     {
         title: "What's Mine is Yours",
@@ -1017,6 +1023,11 @@ const quests = [
             fletching: '30'
         },
         quests: ['Jungle Potion', 'Big Chompy Bird Hunting']
+    },
+    {
+        title: 'Enter the Abyss (miniquest)',
+        skills: {},
+        quests: ['Rune Mysteries']
     }
 ];
 

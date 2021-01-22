@@ -5,10 +5,6 @@ import axios from 'axios';
 import { ReactDiagram } from 'gojs-react';
 import SidePanel from './SidePanel/SidePanel';
 import questData from '../../data/quests';
-// import questResponse from '../../data/questResponse';
-// import skillResponse from '../../data/skillResponse';
-// import questResponse from '../../data/questResponseJed';
-// import skillResponse from '../../data/skillResponseJed';
 
 import SkillIds from '../../util/SkillIds';
 import SkillIcons from '../../util/SkillIcons';

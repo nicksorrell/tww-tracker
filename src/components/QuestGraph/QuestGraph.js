@@ -147,7 +147,10 @@ function QuestGraph() {
         function _determineRequiredQuestStatuses(quest) {
             let reqQuests = quest.quests.map((reqQuest) => {
                 return {
-                    title: reqQuest,
+                    title:
+                        reqQuest.indexOf('miniquest') > 0
+                            ? reqQuest.split(' (miniquest)')[0]
+                            : reqQuest,
                     status: _determineQuestStatus(
                         _.find(questData, (_quest) => _quest.title === reqQuest)
                     )

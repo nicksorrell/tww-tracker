@@ -1005,7 +1005,8 @@ const quests = [
             'Defender of Varrock',
             'Tears of Guthix',
             'Zogre Flesh Eaters',
-            'The Path of Glouphrie'
+            'The Path of Glouphrie',
+            'The Hunt for Surok (miniquest)'
         ]
     },
     {
@@ -1028,6 +1029,11 @@ const quests = [
         title: 'Enter the Abyss (miniquest)',
         skills: {},
         quests: ['Rune Mysteries']
+    },
+    {
+        title: 'The Hunt for Surok (miniquest)',
+        skills: { prayer: '43', mining: '42' },
+        quests: ['What Lies Below']
     }
 ];
 

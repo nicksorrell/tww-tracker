@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import _ from 'underscore';
 import SkillIcons from '../../../util/SkillIcons';
 import SkillIds from '../../../util/SkillIds';
@@ -12,6 +12,9 @@ function SidePanel(props) {
     let uniqueQuests = [];
     let completedQuests = [];
     let unmetQuests = [];
+    const [showAvailableQuests, setShowAvailableQuests] = useState(true);
+    const [showCompletedQuests, setShowCompletedQuests] = useState(false);
+    const [showUnmetQuests, setShowUnmetQuests] = useState(false);
 
     for (let skill of Object.entries(SkillIds)) {
         let skillName = skill[0].toLowerCase();
@@ -57,6 +60,8 @@ function SidePanel(props) {
     }
 
     availableQuests.sort((a, b) => (a.name < b.name ? -1 : 1));
+    completedQuests.sort((a, b) => (a.name < b.name ? -1 : 1));
+    unmetQuests.sort((a, b) => (a.name < b.name ? -1 : 1));
 
     let specialSkillsEls = playerSkills.special.map((skill) => {
         return (
@@ -136,11 +141,38 @@ function SidePanel(props) {
                 ></span>
             );
     }
+
     let questsEls = availableQuests.map((quest) => {
         return (
             <p
                 key={questKey++}
-                className={styles.availableQuest}
+                className={styles.quest}
+                onClick={() => props.availableQuestClickHandler(quest.name)}
+            >
+                {makeDifficultyMarker(quest.difficulty)}
+                {quest.name}
+            </p>
+        );
+    });
+
+    let completedQuestsEls = completedQuests.map((quest) => {
+        return (
+            <p
+                key={questKey++}
+                className={styles.quest}
+                onClick={() => props.availableQuestClickHandler(quest.name)}
+            >
+                {makeDifficultyMarker(quest.difficulty)}
+                {quest.name}
+            </p>
+        );
+    });
+
+    let unmetQuestsEls = unmetQuests.map((quest) => {
+        return (
+            <p
+                key={questKey++}
+                className={styles.quest}
                 onClick={() => props.availableQuestClickHandler(quest.name)}
             >
                 {makeDifficultyMarker(quest.difficulty)}
@@ -180,10 +212,62 @@ function SidePanel(props) {
                 </div>
             </div>
 
-            <h2 className={[styles.title, styles.questsTitle].join(' ')}>
-                Available Quests ({availableQuests.length})
-            </h2>
-            <div className={styles.quests}>{questsEls}</div>
+            <div className={styles.questsPanel}>
+                <h2
+                    className={[styles.title, styles.questsTitle].join(' ')}
+                    onClick={() => setShowAvailableQuests(!showAvailableQuests)}
+                >
+                    <span className={styles.expander}>
+                        {showAvailableQuests ? '-' : '+'}
+                    </span>
+                    Available Quests
+                    <span className={styles.questCount}>{availableQuests.length}</span>
+                </h2>
+                {showAvailableQuests ? (
+                    <div className={styles.quests}>{questsEls}</div>
+                ) : null}
+
+                <h2
+                    className={[styles.title, styles.questsTitle].join(' ')}
+                    onClick={() => setShowCompletedQuests(!showCompletedQuests)}
+                >
+                    <span className={styles.expander}>
+                        {showCompletedQuests ? '-' : '+'}
+                    </span>
+                    Completed Quests
+                    <span className={[styles.questCount, styles.completed].join(' ')}>{completedQuests.length}</span>
+                </h2>
+                {showCompletedQuests ? (
+                    <div
+                        className={[
+                            styles.quests,
+                            styles.quests__completed
+                        ].join(' ')}
+                    >
+                        {completedQuestsEls}
+                    </div>
+                ) : null}
+
+                <h2
+                    className={[styles.title, styles.questsTitle].join(' ')}
+                    onClick={() => setShowUnmetQuests(!showUnmetQuests)}
+                >
+                    <span className={styles.expander}>
+                        {showUnmetQuests ? '-' : '+'}
+                    </span>
+                    Unavailable Quests
+                    <span className={[styles.questCount, styles.unmet].join(' ')}>{unmetQuests.length}</span>
+                </h2>
+                {showUnmetQuests ? (
+                    <div
+                        className={[styles.quests, styles.quests__unmet].join(
+                            ' '
+                        )}
+                    >
+                        {unmetQuestsEls}
+                    </div>
+                ) : null}
+            </div>
         </Fragment>
     );
 }

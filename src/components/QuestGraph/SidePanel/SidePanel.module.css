@@ -22,17 +22,58 @@
     padding-left: 15px;
     padding-bottom: 5px;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
 }
 
-.availableQuest {
+.expander {
+    font-size: 14px;
+    color: #555;
+    width: 14px;
+}
+
+.questCount {
+    font-size: 14px;
+    font-weight: normal;
+    color: white;
+    background: #406a9b;
+    border-radius: 20px;
+    padding: 2px 7px;
+    margin-left: 5px;
+}
+
+.questCount.completed {
+    background: darkgreen;
+}
+
+.questCount.unmet {
+    background: darkred;
+}
+
+.title.questsTitle:hover {
+    cursor: pointer;
+    color: #888;
+}
+
+.quest {
     padding: 3px 0;
     padding-left: 15px;
 }
 
-.availableQuest:hover {
-    background: darkgoldenrod;
+.quest:hover {
+    background: #406a9b;
     color: white;
     cursor: pointer;
+}
+
+.quests.quests__completed .quest:hover {
+    background: darkgreen;
+    color: white;
+}
+
+.quests.quests__unmet .quest:hover {
+    background: darkred;
+    color: white;
 }
 
 .skills {
@@ -68,9 +109,21 @@
 }
 
 .quests {
-    overflow-y: auto;
     flex: 1 1 100px;
     margin-bottom: 10px;
+}
+
+.quests.quests__completed .quest {
+    color: darkgreen;
+}
+
+.quests.quests__unmet .quest {
+    color: darkred;
+}
+
+.questsPanel {
+    overflow-y: auto;
+    flex: 1 0 100px;
 }
 
 .difficulty {

@@ -514,7 +514,7 @@ function QuestGraph() {
         diagram.focus();
 
         diagram.startTransaction('highlight search');
-        var regex = new RegExp(name, 'i');
+        var regex = new RegExp(`^${name}$`, 'i');
         var results = diagram.findNodesByExample({ name: regex });
         diagram.highlightCollection(results);
         if (results.count > 0) diagram.centerRect(results.first().actualBounds);

@@ -27,7 +27,6 @@ function QuestGraph() {
 
     let nodeKey = 1;
     const questDataArray = [];
-    let isExpanded = true;
     let isDev = process.env && process.env.NODE_ENV === 'development';
     let endpoints = {
         skills:
@@ -307,7 +306,54 @@ function QuestGraph() {
                     ),
                     $(go.Placeholder)
                 ),
-                isTreeExpanded: isExpanded
+                contextMenu: $(
+                    'ContextMenu',
+                    $(
+                        'ContextMenuButton',
+                        { defaultStretch: go.GraphObject.Horizontal },
+                        $(
+                            go.TextBlock,
+                            {
+                                textAlign: 'left'
+                            },
+                            'Zoom to Quest',
+                            {
+                                click: function (e, obj) {
+                                    e.diagram.commit(function (d) {
+                                        d.scale = 1;
+                                        d.centerRect(
+                                            obj.part.adornedPart.actualBounds
+                                        );
+                                    }, 'zoom to node');
+                                }
+                            }
+                        )
+                    ),
+                    $(
+                        'ContextMenuButton',
+                        { defaultStretch: go.GraphObject.Horizontal },
+                        $(
+                            go.TextBlock,
+                            {
+                                textAlign: 'left'
+                            },
+                            'Toggle Node Quests',
+                            {
+                                click: function (e, obj) {
+                                    e.diagram.commit(function (d) {
+                                        if (
+                                            obj.part.adornedPart.isTreeExpanded
+                                        ) {
+                                            return obj.part.adornedPart.collapseTree();
+                                        } else {
+                                            return obj.part.adornedPart.expandTree();
+                                        }
+                                    }, 'toggle node quests');
+                                }
+                            }
+                        )
+                    )
+                )
             },
             $(
                 go.Shape,
@@ -486,7 +532,46 @@ function QuestGraph() {
                         (quests) => quests.length === 0
                     )
                 ),
-                $('TreeExpanderButton')
+                $(
+                    go.Shape,
+                    'LineH',
+                    {
+                        stroke: 'rgba(255,255,255,0.75)',
+                        strokeWidth: 1,
+                        height: 1,
+                        stretch: go.GraphObject.Horizontal
+                    },
+                    new go.Binding(
+                        'visible',
+                        'quests',
+                        (quests) => quests.length > 0
+                    )
+                ),
+                $(
+                    'Button',
+                    {
+                        margin: new go.Margin(10, 0, 0, 0),
+                        'ButtonBorder.fill': 'rgba(255,255,255,0.25)',
+                        _buttonFillOver: 'rgba(255,255,255,0.5)',
+                        click: function (e, obj) {
+                            if (obj.part.isTreeExpanded) {
+                                obj.part.collapseTree();
+                            } else {
+                                obj.part.expandTree();
+                            }
+                        }
+                    },
+                    new go.Binding(
+                        'visible',
+                        'quests',
+                        (quests) => quests.length > 0
+                    ),
+                    $(
+                        go.TextBlock,
+                        { margin: 5, stroke: 'white' },
+                        'Toggle Required Quests'
+                    )
+                )
             )
         );
 
@@ -503,12 +588,70 @@ function QuestGraph() {
             }, 'no highlighteds');
         };
 
+        diagram.contextMenu = $(
+            'ContextMenu',
+            $(
+                'ContextMenuButton',
+                { defaultStretch: go.GraphObject.Horizontal },
+                $(go.TextBlock, { textAlign: 'left' }, 'Expand All'),
+                {
+                    click: function (e, obj) {
+                        e.diagram.commit(function (d) {
+                            d.nodes.each((n) => n.expandTree());
+                        }, 'expand all');
+                    }
+                }
+            ),
+            $(
+                'ContextMenuButton',
+                { defaultStretch: go.GraphObject.Horizontal },
+                $(go.TextBlock, { textAlign: 'left' }, 'Collapse Completed'),
+                {
+                    click: function (e, obj) {
+                        e.diagram.commit(function (d) {
+                            d.nodes.each((n) => {
+                                let subQuestsCompleted = true;
+
+                                if (n.data.quests.length > 0) {
+                                    for (let quest of n.data.quests) {
+                                        if (quest.status !== 'COMPLETED')
+                                            subQuestsCompleted = false;
+                                    }
+                                }
+                                if (
+                                    n.data.status === 'COMPLETED' ||
+                                    subQuestsCompleted
+                                )
+                                    n.collapseTree();
+                            });
+                        }, 'collapse completed');
+                    }
+                }
+            ),
+            $(
+                'ContextMenuButton',
+                { defaultStretch: go.GraphObject.Horizontal },
+                $(go.TextBlock, { textAlign: 'left' }, 'Zoom to Fit'),
+                {
+                    click: function (e, obj) {
+                        e.diagram.commit(function (d) {
+                            d.zoomToRect(d.documentBounds);
+                        }, 'zoom to fit');
+                    }
+                }
+            )
+        );
+
+        diagram.addDiagramListener('TreeExpanded', function (e) {
+            e.diagram.centerRect(e.subject.part);
+        });
+
         diagram.model = new go.TreeModel(questDataArray);
+
+        diagram.animationManager.isEnabled = false;
 
         return diagram;
     }
-
-    //console.log(questDataArray);
 
     function searchForQuest(name) {
         diagram.focus();

@@ -18,6 +18,7 @@ function SidePanel(props) {
 
     for (let skill of Object.entries(SkillIds)) {
         let skillName = skill[0].toLowerCase();
+        let propSkill = _.find(skills, (_skill) => _skill.id === skill[1]);
 
         if (skill[1] < 28) {
             playerSkills.regular.push({
@@ -25,7 +26,8 @@ function SidePanel(props) {
                     skillName[0],
                     skillName[0].toUpperCase()
                 ),
-                level: _.find(skills, (_skill) => _skill.id === skill[1]).level
+                level: propSkill.level,
+                maxReq: propSkill.maxReq
             });
         } else {
             playerSkills.special.push({
@@ -33,7 +35,8 @@ function SidePanel(props) {
                     skillName[0],
                     skillName[0].toUpperCase()
                 ),
-                level: _.find(skills, (_skill) => _skill.id === skill[1]).level
+                level: propSkill.level,
+                maxReq: propSkill.maxReq
             });
         }
     }
@@ -65,7 +68,7 @@ function SidePanel(props) {
 
     let specialSkillsEls = playerSkills.special.map((skill) => {
         return (
-            <div className={styles.skill} title={skill.name} key={skill.name}>
+            <div className={[styles.skill, skill.level >= skill.maxReq ? styles.maxReqMet : null].join(' ')} title={`${skill.name} (max req. ${skill.maxReq})`} key={skill.name}>
                 {skill.name === 'Combat' ? (
                     <img src={SkillIcons['melee']} alt="Skill icon" />
                 ) : null}
@@ -79,7 +82,7 @@ function SidePanel(props) {
 
     let skillsEls = playerSkills.regular.map((skill) => {
         return (
-            <div className={styles.skill} title={skill.name} key={skill.name}>
+            <div className={[styles.skill, skill.level >= skill.maxReq ? styles.maxReqMet : null].join(' ')} title={`${skill.name} (max req. ${skill.maxReq})`} key={skill.name}>
                 <img
                     src={SkillIcons[skill.name.toLowerCase()]}
                     alt="Skill icon"
@@ -204,6 +207,7 @@ function SidePanel(props) {
 
             <div className={styles.panel}>
                 <h2 className={styles.title}>Skills</h2>
+                <p>Skills in green have been met for the TWW chain.</p>
                 <div className={styles.skills}>
                     <div className={styles.regularSkills}>{skillsEls}</div>
                     <div className={styles.specialSkills}>

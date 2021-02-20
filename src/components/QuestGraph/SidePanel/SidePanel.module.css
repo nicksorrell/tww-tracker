@@ -102,6 +102,10 @@
     min-width: 35px;
 }
 
+.skill.maxReqMet {
+    background: #008002;
+}
+
 .specialSkills .skill {
     flex-grow: 1;
     justify-content: center;
@@ -162,6 +166,7 @@
     padding: 0 10px;
 }
 
+.panel p,
 .summary p {
     margin-bottom: 10px;
 }

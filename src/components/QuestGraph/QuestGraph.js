@@ -69,6 +69,40 @@ function QuestGraph() {
                         level: questPoints
                     });
 
+                    // Calculate max required level for each skill
+                    const reqSkills = {};
+                    const maxSkillReqs = [];
+
+                    // Generate list of max required skills
+                    for (let quest of questData) {
+                        for (let skill of Object.entries(quest.skills)) {
+                            let skillName = skill[0];
+                            let skillLevel = skill[1];
+
+                            if (reqSkills[skillName] == null || +reqSkills[skillName] < +skillLevel) {
+                                reqSkills[skillName] = skillLevel;
+                            }
+                        }
+                    }
+
+                    for (let skill of Object.entries(reqSkills)) {
+                        let skillName = skill[0];
+                        let skillLevel = skill[1];
+
+                        maxSkillReqs.push({
+                            name: skillName,
+                            level: skillLevel,
+                            id: SkillIds[skillName.toUpperCase()]
+                        });
+                    }
+
+                    for (let skill of skills) {
+                        let _skill = _.find(maxSkillReqs, sk => sk.id === skill.id);
+                        
+                        skill.maxReq = _skill == null ? 1 : +_skill.level;
+                    }
+
+                    // Finally set the data
                     setData({
                         quests: quests,
                         skills: skills
